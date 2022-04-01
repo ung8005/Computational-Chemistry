@@ -4,6 +4,8 @@
 
 import numpy as np
 import matplotlib.pyplot as plt 
+import scipy 
+from scipy import optimize 
 
 # Open data file
 density_File= open("DDC100_01_mass_density.txt")
@@ -20,7 +22,7 @@ print (data_Items)
 data_Array=np.loadtxt(density_File)
 
 # Extract x and y arrays to plot the water density
-depth_plot=data_Array[:,data_Items.index('nm')]
+depth_plot=data_Array[:,data_Items.index('nm')] 
 water_density_plot=data_Array[:,data_Items.index('H2O')]
 
 # Extract subset water density array to fit to the interface width function
@@ -38,9 +40,24 @@ Fit_Water_Interface = data_Array[analysis_start_index:analysis_end_index,data_It
 plt.plot (depth_plot, water_density_plot)
 plt.title ('Density Plot for Water')
 plt.xlabel ('Depth (nm)')
-plt.ylabel ('Density of water')
-plt.show ()
+plt.ylabel ('Density of Water (g/ml')
 
-# Fit the water density at the interface 
-# Function: density(depth) = densityInBulkAqueuousLayer/2 * (1-tanh ((depth-depthCenterOfInterface)/
-#                            measureOfTheWidthOfInterface.
+# Fitting the water density at the interface, this will give the width of the interface 
+def hyperbolicTanFunc (m, a, b, c):
+	return (a/2)*(1-np.tanh((m-b)/(2.20*c)))
+maxHeight = 1
+inflection = 0
+width = 0.4
+optimize = hyperbolicTanFunc (Fit_Depth_Array, maxHeight, inflection, width)
+popt, cov = scipy.optimize.curve_fit (hyperbolicTanFunc, Fit_Depth_Array, optimize)
+e,f, g = popt 
+yNew = hyperbolicTanFunc (Fit_Depth_Array, e, f, g)
+plt.plot (Fit_Depth_Array, yNew, color = "red")
+plt.title ('Water Density at the Interface')
+plt.xlabel ('Depth (nm)')
+plt.ylabel ('Density of Water (g/ml)')
+
+# Plotting the curve fit on the same graph as the density plot of water. 
+plt.plot (Fit_Depth_Array, yNew, color = "red", label='Fitted Water Density')
+plt.plot (depth_plot, water_density_plot, color = "green", label='Not-fitted Water Density') #trying to fit two cur
+plt.show ()
