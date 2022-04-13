@@ -101,7 +101,10 @@ maxHeight = 1
 inflection = 0
 width = 0.4
 popt, cov = scipy.optimize.curve_fit (hyperbolicTanFunc, Fit_Depth_Array, Fit_Water_Interface)
+perr = np.sqrt(np.diag(cov))
+print (perr)
 maxHeight, inflection, width = popt 
+# Verifying the hyperbolic function parameters 
 print (maxHeight, inflection, width)
 yNew = hyperbolicTanFunc (Fit_Depth_Array, maxHeight, inflection, width)
 
