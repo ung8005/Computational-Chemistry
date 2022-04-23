@@ -8,11 +8,13 @@
 
 - **[Python]**
 
-- Some modules:
+- **Some modules:**
  
   - `matplotlib`
   - `numpy`
   - `scipy`
+  
+  <br>
   
   ```
   pip install matplotlib numpy scipy
