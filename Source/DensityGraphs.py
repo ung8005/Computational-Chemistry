@@ -8,7 +8,7 @@ import scipy
 from scipy import optimize 
 
 # Open data file
-density_File= open("DDC100_01_mass_density.txt")
+density_File= open('MassDensities/100/1.txt')
 
 #Read first line with column headings.
 headerLine=density_File.readline()
@@ -60,7 +60,7 @@ import scipy
 from scipy import optimize 
 
 # Open data file
-density_File= open("DDC100_01_mass_density.txt")
+density_File= open('MassDensities/100/1.txt')
 
 #Read first line with column headings.
 headerLine=density_File.readline()

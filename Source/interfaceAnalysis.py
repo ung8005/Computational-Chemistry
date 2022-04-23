@@ -1,3 +1,4 @@
+"""
 This Program will read in all of the atom data from the simulations using FrameDataClass.py and will create a 2-d of the uppermost water atoms (i.e. the interface) for each frame and save the z height and the atom type count. The resulting interface location data is analyzed with 2d FFT and fractal analysis.  Output three files:
 		nn_##.interface_comp.txt including percenrt atomic composition of interface of O, H and holes
 		nn_##.interface_FFT.txt averaged trace of 2-d fft with x axis and stdev

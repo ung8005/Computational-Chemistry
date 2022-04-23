@@ -9,7 +9,7 @@ import os
 from scipy import optimize 
 
 # Absolute path to folder in which the files of analysis reside 
-folderPath = "/Users/ashleyung/Desktop/Testing/DensityFiles/DDC100"
+folderPath = 'MassDensities/100'
 filePaths = [os.path.join (folderPath, name) for name in os.listdir (folderPath)]
 allFiles = []
 
